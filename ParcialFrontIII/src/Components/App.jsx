@@ -7,7 +7,7 @@ function App() {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState({ name: '', color: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +15,8 @@ function App() {
       setIsValid(false);
     } else {
       setIsValid(true);
-      setSubmitted(true);
+      setSubmittedData({ name, color }); 
+      setName(""); 
     }
   };
 
@@ -32,8 +33,8 @@ function App() {
             value={name}
           />
         </label>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <label>
           Ingresa tu color favorito (en formato HEX)
           <input
@@ -42,15 +43,15 @@ function App() {
             value={color}
           />
         </label>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <Button color="primary" type="submit">
           Enviar
         </Button>
       </form>
-      <br></br>
-      <br></br>
-      {submitted && isValid && <Card name={name} color={color} />}
+      <br />
+      <br />
+      {submittedData.name && submittedData.color && <Card name={submittedData.name} color={submittedData.color} />}
     </div>
   );
 }
